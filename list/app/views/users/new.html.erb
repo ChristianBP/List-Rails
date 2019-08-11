@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create Account</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <meta name="keywords" content="list">
+        <meta name="author" content="Christian Parker">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+	    <div class="container-fluid h-100 twentypt">
+	    	<div class="row h-100">
+	    		<div class="col-3 col-lg-4"></div>
+		    	<div class="col-6 col-lg-4 my-auto form-container border border-primary borderwidth-5 rounded text-center">
+
+              <%= form_for(@user, class: "my-5 d-flex flex-column") do |u| %>
+
+			        	<div class="row my-5">
+			        		<div class="col-3"></div>
+			        		<div class="col-6 d-flex flex-column">
+						       		<div class="font-weight-bold twentyninept mb-4">Create Account</div>
+                        <%= u.text_field(:username, class: "text-center my-2", placeholder: "Enter Username")%>
+						            <%= u.text_field(:email, class: "text-center my-2", placeholder: "Enter your Email")%>
+                        <%= u.text_field(:password, class: "text-center my-2", placeholder: "Password")%>
+                        <%= password_field_tag('verify_password', nil, class: "text-center my-2", placeholder: "Re-enter Password")%>
+						            <%= u.submit("Submit", class: "btn-primary my-2")%>
+				        	</div>	<!-- col -->
+				        	<div class="col-3"></div>
+				        </div>	<!-- row -->
+
+			        <%end%>
+
+			    </div>	<!-- col -->
+	    		<div class="col-3 col-lg-4"></div>
+		    </div>	<!-- row -->
+		</div>	<!-- container -->
+
+
+		<script src="/js/scripts.js"></script>
+    </body>
+</html>

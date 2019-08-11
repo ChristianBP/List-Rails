@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign In</title>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <meta name="keywords" content="list">
+        <meta name="author" content="Christian Parker">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+	    <div class="container-fluid h-100 twentypt">
+	    	<div class="row h-100">
+	    		<div class="col-3 col-lg-4"></div>
+		    	<div class="col-6 col-lg-4 my-auto form-container border border-primary borderwidth-5 rounded text-center">
+
+              <%= form_tag({action: "login"}, method: "get", class: "my-5 d-flex flex-column") do %>
+
+			        	<div class="row my-5">
+			        		<div class="col-3"></div>
+			        		<div class="col-6 d-flex flex-column">
+						       		<div class="display-2 font-weight-bold">List</div>
+						            <input class="text-center my-2" id="email" type="email" name="email" placeholder="Enter your Email">
+						            <input class="text-center my-2" type="password" name="password" placeholder="Password">
+						            <input class="btn-primary my-2" type="submit" value="Sign In">
+                        <%= link_to('Create an account', new_user_path) %>
+				        	</div>	<!-- col -->
+				        	<div class="col-3"></div>
+				        </div>	<!-- row -->
+
+			        <%end%>
+
+			    </div>	<!-- col -->
+	    		<div class="col-3 col-lg-4"></div>
+		    </div>	<!-- row -->
+		</div>	<!-- container -->
+
+
+		<script src="/js/scripts.js"></script>
+    </body>
+</html>
