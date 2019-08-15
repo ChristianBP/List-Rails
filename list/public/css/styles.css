@@ -2,14 +2,30 @@ html, body {
 	height: 100vh;
 }
 
-#sign-in {
-	font-size: 20pt;
-}
-
 .twentypt {
 	font-size: 20pt;
 }
 
 .twentyninept {
 	font-size: 29.8pt;
+}
+
+div.list-item {
+	border-width: 2px !important;
+	border-color: rgb(2, 117, 216, 0.4) !important;
+}
+
+form.list-item {
+	border-width: 2px !important;
+	border-color: rgb(2, 117, 216, 0.4) !important;
+}
+
+.error-message {
+	opacity: 0.75;
+	color: red;
+	font-size: 17pt;
+}
+
+#new-item {
+	overflow: hidden;
 }

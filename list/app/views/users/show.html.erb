@@ -1,45 +1,43 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Create Account</title>
-        <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="/js/jquery-3.4.1.min.js"></script>
-        <meta name="author" content="Christian Parker">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-      <div class="container-fluid h-100">
-        <div class="row h-100">
-          <div class="col-2"></div>
-          <div class="col-8 my-5">
+<% @page_title=@list_name %>
 
-            <div class="d-flex flex-column">
-              <div class="d-flex p-2">
-                <div class="bg-success p-2 mr-auto">Click here to add new item to list...</div>
-                <div class="p-2">Date</div>
-              </div> <!-- flex-row -->
-              <div class="d-flex border border-primary rounded-top p-2">
-                <div class="bg-secondary p-2">X</div>
-                <div class="bg-success p-2 mr-auto">List item text</div>
-                <div class="p-2">Complete by date</div>
-              </div> <!-- flex-row -->
-              <div class="d-flex border-left border-right border-primary p-2">
-                <div class="bg-secondary p-2">X</div>
-                <div class="bg-success p-2 mr-auto">List item text</div>
-                <div class="p-2">Complete by date</div>
-              </div> <!-- flex-row -->
-              <div class="d-flex border border-primary rounded-bottom p-2">
-                <div class="bg-secondary p-2">X</div>
-                <div class="bg-success p-2 mr-auto">List item text</div>
-                <div class="p-2">Complete by date</div>
-              </div> <!-- flex-row -->
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-2"></div>
+    <div class="col-8 my-5">
 
-            </div> <!-- flex-column -->
+      <div id="item-column" class="d-flex flex-column">
 
-          </div>
-          <div class="col-2"></div>
-        </div>	<!-- row -->
-      </div>	<!-- container -->
-    </body>
-</html>
+        <%= form_for(@new_item, :html => {:class => "d-flex p-2 border border-primary rounded-top list-item"}, :remote => "true", :authenticity_token => true) do |l| %>
+          <span id="new-item" class="border-0 p-2 mr-auto flex-grow-1" contenteditable="true">Click here to add new item to list...</span>
+          <%= l.hidden_field(:value, id: "value-field")%>
+          <%= l.date_field(:dueDate, class: "border-0 rounded py-2 px-4 mx-3 flex-shrink-0")%>
+          <%= hidden_field_tag("id", params[:id]) %>
+          <%= l.submit("Submit", class: "btn btn-primary py-2 px-4 mx-2 flex-shrink-0")%>
+        <%end%>
+
+        <% item_count = 0 %>
+        <% @list_items.each do |item| %>
+          <div class="d-flex border border-primary border-top-0 <%= item_count==@list_items.size-1 ? " rounded-bottom" : "" %> p-2 list-item">
+            <div class="bg-secondary p-2">X</div>
+            <div class="bg-success p-2 mr-auto"><%= item.value %></div>
+            <div class="p-2"><%= item.dueDate === nil ? nil : item.dueDate %></div>
+          </div> <!-- flex-row -->
+          <% item_count += 1 %>
+        <% end %>
+
+      </div> <!-- flex-column -->
+
+    </div>
+    <div class="col-2"></div>
+  </div>	<!-- row -->
+</div>	<!-- container -->
+
+<script type="text/javascript">
+  $("#new-item").one("click", function(){
+    $("#new-item").text("");
+  });
+
+  $("#new-item").keyup(function(){
+    $("#value-field").val($("#new-item").text());
+  });
+</script>
